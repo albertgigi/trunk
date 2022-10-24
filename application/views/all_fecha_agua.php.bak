@@ -1,0 +1,74 @@
+<?php  
+ if(isset($_POST["from_date"], $_POST["to_date"]))  
+ {  
+      $connect = mysqli_connect("localhost", "panel", "PA090518ua", "panel");  
+      
+	  $output = '';  
+      
+	  $query = "SELECT * FROM pdc_all_dep_agua
+           WHERE periodo_inicio BETWEEN '".$_POST["from_date"]."' AND '".$_POST["to_date"]."'";
+	  
+	  $querysumas = "SELECT sum(costo) as CostoTotal, sum(consumo) as ConsumoTotal FROM pdc_all_dep_agua
+           WHERE periodo_inicio BETWEEN '".$_POST["from_date"]."' AND '".$_POST["to_date"]."' ";
+		   
+      $resultsumas = mysqli_query($connect, $querysumas);  
+      
+	  $result = mysqli_query($connect, $query);
+      
+	  $rowsumas = mysqli_fetch_array($resultsumas);  
+      
+	  $output .= '  
+           <table class="table table-bordered" id="DEMA">  
+                <tr>  
+                             <th width="5%">NIS</th>
+                             <th width="50%">Dependencia</th>
+                             <th width="10%">Inicio</th>
+                             <th width="10%">Fin</th>
+                             <th width="10%">Consumo</th>
+                             <th width="10%">Costo</th>
+                </tr>  
+      ';  
+      if(mysqli_num_rows($result) > 0)  
+      {  
+           while($row = mysqli_fetch_array($result))  
+           {  
+                $output .= '  
+                     <tr>  
+                          <td>'. $row["cuenta"] .'</td>  
+                          <td>'. $row["dependencia"] .'</td>  
+                          <td>'. $row["periodo_inicio"] .'</td>  
+                          <td>'. $row["periodo_fin"] .'</td>  
+                          <td>'. number_format($row["consumo"]) .' m3</td>
+                          <td>$ '. number_format($row["costo"],2) .'</td>    
+                     </tr>  
+                ';  
+
+           }  
+           
+           $output .= '
+                    <tr>  
+                          <td>Totales</td>  
+                          <td></td>  
+                          <td></td>  
+                          <td></td>  
+                          <td width="15%"> '. number_format($rowsumas["ConsumoTotal"]) .' m3 </td>
+                          <td width="15%">$ '. number_format($rowsumas["CostoTotal"],2) .' </td>  
+                     </tr>  
+                ';  
+             
+
+
+           
+      }  
+      else  
+      {  
+           $output .= '  
+                <tr>  
+                     <td colspan="5">No hay datos a encontrar.</td>  
+                </tr>  
+           ';  
+      }  
+      $output .= '</table>';  
+      echo $output;  
+ }  
+ ?>

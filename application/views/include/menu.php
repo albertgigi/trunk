@@ -1,0 +1,37 @@
+<!--Posiblemente quede obsoleto este Menu-->
+<header id="header" role="banner">
+
+	<div id="top-menu">
+		<div class="container">
+			<div class="nav">
+				<ul>
+					<li><span><i class="icon-user"></i> <?php echo $_SESSION['sess']['fullname']; ?></span></li>
+					<li> | <?php echo anchor('logout', '<i class="icon-power-off"></i> Cerrar sesión'); ?></li>
+				</ul>
+			</div> 
+		</div>
+	</div> <!--/#top-menu-->
+
+    <div class="container">
+        <div id="navbar" class="navbar navbar-default">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="<?php echo site_url("inicio"); ?>"><i class="icon-home"></i> Inicio</a></li>
+                    <li><a href="<?php echo site_url("inicio#pricing"); ?>">Servicios</a></li>
+                    <li><a href="<?php echo site_url("inicio"); ?>">Búsqueda</a></li>
+                    <li><a href="<?php echo site_url("inicio"); ?>">Diagnósticos</a></li>
+                    <li><a href="<?php echo site_url("inicio"); ?>">Directorio</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</header><!--/#header-->

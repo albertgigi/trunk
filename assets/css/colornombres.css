@@ -1,0 +1,55 @@
+.tech ul {
+    padding: 0px 0px 0px 0px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    list-style:none;
+    list-style-position:outside;
+}
+.tech li{
+  display:inline-block;
+  text-align: center;
+  background-color: #cccccc;
+  color: #222222;
+  margin: 5px 0px 5px 0px;
+
+  border-radius: 3px;
+  -moz-border-radius: 3px;
+  box-shadow: 2px 3px 5px #000000;
+  border: #969696 1px dashed;
+}
+/*.plan2 li.testcolor1 {
+    background-color:yellow;
+    color: red;
+}*/
+
+#planmetric #wachalosrecibos a {
+	color:#009acd;
+	font-weight: bold;
+	/#228b22
+	009acd
+	00688b*/
+}
+
+#planmetric #anualgraf a {
+    color:#7d27cd;
+	font-weight: bold;
+	/*
+	7d72cd
+	f7a35c
+	9400d3
+	836fff*/
+}
+
+#planmetric #greenmetric2 a {
+    color:#f7a35c	;
+	font-weight: bold;
+	/*
+	f7a35c
+	9400d3
+	836fff*/
+}
+
+#planmetric #greenmetric a {
+    color:blue;
+	font-weight: bold;
+}

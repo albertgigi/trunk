@@ -1,0 +1,222 @@
+<?php
+$con = mysql_connect('localhost', 'sdspan3', 'RTRIUHG54637') or die('Error connecting to server');
+mysql_select_db("sdspanel1", $con); 
+
+ $sql = "SELECT theyear, FORMAT((rawkwxgei/1000000), 2) AS rwkwgzen, FORMAT((rawkw/1000000), 2) AS rwkwzen, FORMAT((cantidad_alumnos/1000), 1) AS caluzen FROM pdc_factor_gei";
+            $result = mysql_query($sql);
+            $data = array();
+            while ($row = mysql_fetch_array($result)){
+                $data[] = $row['theyear'];
+            
+                $data1[] = $row['rwkwgzen'];
+                
+                $data2[] = $row['rwkwzen'];
+                
+                $data3[] = $row['caluzen'];
+                
+            }
+?>          
+<!DOCTYPE HTML>
+<html>
+    <head>
+    
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+        
+    
+            <script type="text/javascript">//INICIO DEL SCRIPT PARA IMPRIMIR
+            function PrintDiv() {    
+               var divToPrint = document.getElementById('divToPrint');//NOMBRE DEL DIV
+               var popupWin = window.open('', '_blank', 'width=750,height=800'); //AQUI SE DECIDE EL ANCHO Y ALTO DE VISTA PREVIA
+               popupWin.document.open();
+               popupWin.document.write('<html><body onload="window.print()">' + divToPrint.innerHTML + '</html>');
+                popupWin.document.close();
+                    }
+         </script><!--CIERRE DEL SCRIPT PARA IMPRIMIR-->
+    </head>
+    <body>
+      <div id="divToPrint" >
+            <div style="background-color:white;">
+
+            
+        <style type="text/css">
+#container {
+    height: 400px; 
+    min-width: 310px; 
+    max-width: 800px;
+    margin: 0 auto;
+}
+        </style>
+        
+        <script type="text/javascript">
+            $(function () {
+
+    // INICIO DEL ESTILO, PARA CAMBIAR EL TAMAÑO DE LA FUENTE EN EL TÍTULO DE LA GRÁFICA
+    Highcharts.theme = {
+        rangeselector: {
+            enabled: false
+        },
+        tooltip: {
+            crosshairs: false
+        },
+        legend: {
+            enabled: true
+        },
+        title: {
+            style: {
+                fontSize: '15px',
+            }
+        }
+    }
+    var highchartsOptions = Highcharts.setOptions(Highcharts.theme); //SE DEFINE LA VARIABLE PARA LAS OPCIONES DE LA GRÁFICA
+
+$(function () {
+    $('#container').highcharts({
+        chart: {
+            type: 'column',
+            margin: 75,
+            options3d: {
+                enabled: true,
+                alpha: 20,
+                beta: 20,
+                viewDistance: 25,
+                depth: 5 * 50
+            }
+        },
+
+        title: {
+            text: 'Miles de Estudiantes - Millones de Kilowatt Horas - Miles de Toneladas de Emisiones GEI'
+        },
+
+        xAxis: {
+        categories: [
+        <?php echo join($data, ',') ?>
+        ]
+        },
+
+        yAxis: {
+            allowDecimals: false,
+            min: 0,
+            title: {
+                text: 'Totales'
+            }
+        },
+
+        tooltip: {
+            headerFormat: '<b>{point.key}</b><br>',
+            pointFormat: '<span style="color:{series.color}">\u25CF</span> {series.name}: {point.y} / {point.stackTotal}'
+        },
+
+        plotOptions: {
+            column: {
+                depth: 80,
+                stacking: false,
+                grouping: false,
+                groupZPadding: 20,
+                dataLabels: {
+                    enabled: true,
+                    color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
+                }
+            }
+        },
+
+        series: [{
+            name: 'GEI Anual',
+            data: [
+            <?php echo join($data1, ',') ?>
+            ],
+            stack: 0
+        }, {
+            name: 'Kws/Anual',
+            data: [
+            <?php echo join($data2, ',') ?>
+            ],
+            stack: 1
+        }, {
+            name: 'Población Estudiantil',
+            data: [
+            <?php echo join($data3, ',') ?>
+            ],
+            stack: 2
+        }]
+    });
+
+});
+}); //CIERRE PARA EL ESTILO DEL TAMAÑO DE FUENTE DEL TITULO DE LA GRÁFICA
+
+
+        </script>
+    
+
+<!--script src="https://code.highcharts.com/highcharts.js"></script-->
+<!--script src="https://code.highcharts.com/highcharts-3d.js"></script-->
+<!--script src="https://code.highcharts.com/modules/exporting.js"></script-->
+<script src="<?php echo base_url(); ?>assets/js/highcharts.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/highcharts-3d.js"></script>
+<script src="<?php echo base_url(); ?>assets/js//modules/exporting.js"></script>
+
+
+<div id="container" style="height: 500px" style="width: 700px"></div>
+    </body>
+<div class="table-responsive">
+  <table class="table table-bordered table-hover">
+    <thead>
+      <tr>
+        <th rowspan=2>Año</th>
+        <th rowspan=2>KW/Capita por Año</th>
+        <th rowspan=2>Kg/Capita por Año</th>
+        <th rowspan=2>Temperatura</th>
+      </tr>
+    </thead>
+
+    <tbody>
+    <?php if($loadgei): ?>
+      <?php foreach($loadgei as $item): ?>
+      <tr>
+        <td><?php echo $item->theyear; ?></td>
+        <td><?php echo $item->kwcapitayear; ?></td>
+        <td><?php echo $item->kgcapitayear; ?></td>
+        <td><?php echo $item->temperatura; ?> °C</td>
+      </tr>
+      <?php endforeach; ?>
+    <?php else: ?>
+      <tr>
+        <td colspan=10></td>
+      </tr>
+    <?php endif; ?>
+    </tbody>
+
+  </table>
+</div> <!-- table-responsive -->
+
+
+    </div> <!--cierres del div para imprimir-->
+</div><!--cierres del div para imprimir-->
+
+
+<!--BOTON PARA IMPRIMIR/ULTIMA PARTE-->
+<div class="center">
+  <ul class="pagination pagination-lg">
+  <?php echo $this->pagination->create_links(); ?>
+  </ul>
+</div>
+
+    <div>
+                    <input type="button" value="Imprimir" onclick="PrintDiv();" />
+                </div>
+<!--CIERRE DE BOTON-->
+
+<!--BOTON PARA VOLVER A INICIO DE PANEL-->
+  <?php echo form_open(); ?>
+<div>
+<div class="col-md-12 text-right">
+    <button
+      name="enviar"
+      value="volver"
+      class="btn"
+      type="submit"
+    ><span class="glyphicon glyphicon-circle-arrow-left"></span> Volver al Inicio</button>
+  </div>
+  <!--CIERRE DE BOTON-->
+<?php echo form_close(); ?>
+    </html>

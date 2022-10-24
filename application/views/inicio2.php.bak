@@ -1,0 +1,260 @@
+<section id="pricing">
+    <!--div class="container"-->
+        <div class="box first">
+            <div class="center">
+                <h2>Servicios</h2>
+                <p class="lead">Registro de consumo de servicios de energía eléctrica, agua y gas<br>en los planteles e instalaciones de la Universidad.</p>
+            </div><!--/.center-->
+            <div class="big-gap"></div>
+            <div id="pricing-table" class="row">
+                
+                <!--
+
+                COLUMNA PARA ELECTRICIDAD
+                
+                -->
+
+                <div class="col-sm-4 center">
+                    <a class="big-link" href="<?php echo site_url('consumo_electricidad'); ?>">
+                    <i class="icon-bolt icon-md icon-color7"></i>
+                    <h4>Electricidad</h4>
+                    </a>
+
+                    <ul class="plan">
+                        <li>
+                            <b>Recibos</b>
+                                <ul>
+                                    <li><?php
+                                if($_SESSION['sess']['level'] == 1){ echo anchor("consumo_electricidad/capturar/", "Capturar un recibo"); } ?>
+                                    </li>
+                                    <li><?php echo anchor("consumo_electricidad/catalogo/", "Ver recibos capturados"); ?>
+                                    </li>
+                                </ul>
+                        </li>
+                        <li>
+                            <b>Servicios</b>
+                                <ul>
+                                <li><?php
+                                if($_SESSION['sess']['level'] == 1){
+                                    echo anchor("consumo_electricidad/servicio_registrar/", "Registrar nuevo servicio"); 
+                                }
+                                ?>
+                                </li>
+                                <li><?php echo anchor("consumo_electricidad/servicio_catalogo/", "Catálogo de servicios"); ?>
+
+                                </li>
+                                </ul>
+                        </li>
+                    </ul>
+                    <ul class="plan">
+                        <li>
+                            <b>Gráficas</b>
+                                <ul>
+                                    <li><?php echo anchor("consumo_electricidad/diagnostico/", "Gráfica de Electricidad"); ?>
+                                    <li><?php echo anchor("control_factor_gei/metrica_gei_elec/", "GEI Electricidad"); ?>
+                                    <li><?php echo anchor("control_factor_gei/kwcperiodo_elec/", "kWh Per Cápita x Año"); ?>
+                                    <li><?php echo anchor("control_factor_gei/kgcperiodo_elec/", "kg Per Cápita x Año"); ?>
+                                    <li><?php echo anchor("control_factor_gei/graf_tarifa_hmgpo", "Tarifa HM x Año"); ?>
+                                    <li><?php echo anchor("control_factor_gei/graf_tarifa_omgpo", "Tarifa OM x Año"); ?>
+
+                                    </li>
+                                </ul>
+                        </li>
+                    </ul>
+                    <ul class="plan">
+                        <li>
+                            <b>Métricas</b>
+                                <ul>
+                                    <li><?php echo anchor("consumo_electricidad/metricas/", "Métricas de Electricidad"); ?>
+                                    <li><?php echo anchor("consumo_electricidad/campus_buscar/", "Métricas por Campus"); ?>
+                                    <li><?php echo anchor("consumo_electricidad/metricas_buscar_year/", "Total por Años de kWh y Costo"); ?>
+                                    </li>
+                                </ul>
+                        </li>
+                    </ul>
+                </div><!--/.col-sm-4-->
+                
+                <!--
+                
+                COLUMNA PARA AGUA
+
+                -->
+                
+                <div class="col-sm-4 center">
+                    <a class="big-link" href="<?php echo site_url('consumo_agua'); ?>">
+                    <i class="icon-tint icon-md icon-color3"></i>
+                        <h4>Agua</h4>
+                    </a>
+
+                    <ul class="plan">
+                        <li>
+                            <b>Recibos</b>
+                                <ul>
+                                    <li><?php
+                                if($_SESSION['sess']['level'] == 1){ echo anchor("consumo_agua/capturar/", "Capturar un recibo"); }
+                                ?>
+
+                                    </li>
+                                    <li><?php echo anchor("consumo_agua/catalogo/", "Ver recibos capturados"); ?>
+
+                                    </li>
+                                </ul>
+                        </li>
+                        <li>
+                            <b>Servicios</b>
+                                <ul>
+                                    <li><?php
+                                if($_SESSION['sess']['level'] == 1){ echo anchor("consumo_agua/servicio_registrar/", "Registrar nuevo servicio"); }
+                                ?>
+                                    </li>
+                                    <li><?php echo anchor("consumo_agua/servicio_catalogo/", "Catálogo de servicios"); ?>
+                                    </li>
+                                </ul>
+                        </li>
+                    </ul>
+                    <ul class="plan">
+                        <li>
+                        <b>Gráficas</b>
+                        <ul>
+                            <li><?php echo anchor("consumo_agua/diagnostico/", "Gráfica de Agua"); ?></li>
+                            <li><?php echo anchor("control_factor_gei/metrica_gei_agua/", "GEI Agua"); ?></li>
+                            <li><?php echo anchor("control_factor_gei/m3cperiodo_agua/", "m3 Per Cápita x Año"); ?></li>
+                            <li><?php echo anchor("control_factor_gei/wtrkgcperiodo_agua/", "kg Per Cápita x Año"); ?></li>
+                            <li><?php echo anchor("control_factor_gei/metricas_aguas_mediciones", "Agua Potable y Residual"); ?></li>
+
+                        </ul>
+                        </li>
+                    </ul>
+                    <ul class="plan">
+                        <li>
+                            <b></b>
+                                <ul>
+                         
+                                    </li>
+                                </ul>
+                        </li>
+                    </ul>
+                    <ul class="plan">
+                        <li>
+                            <b>Métricas</b>
+                                <ul>
+                                    <li><?php echo anchor("consumo_agua/metricas_buscar_year_agua/", "Total por Años"); ?>
+
+                                    </li>
+                                </ul>
+                        </li>
+                    </ul>
+                </div><!--/.col-sm-4-->
+                
+                <!--
+
+                COLUMNA PARA GAS
+                
+                -->
+
+
+                <div class="col-sm-4 center">
+                    <a class="big-link" href="<?php echo site_url('consumo_gas'); ?>">
+                    <i class="icon-fire icon-md icon-color1"></i>
+                        <h4>Gas</h4>
+                    </a>
+                    <ul class="plan">
+                        <li>
+                            <b>Recibos</b>
+                                <ul>
+                                    <li><?php
+                                if($_SESSION['sess']['level'] == 1){ echo anchor("consumo_gas/capturar/", "Capturar un recibo"); }
+                                ?>
+                                    </li>
+                                    <li><?php echo anchor("consumo_gas/catalogo/", "Ver recibos capturados"); ?>
+                                    </li>
+                                </ul>
+                        </li>
+                        <li>
+                            <b>Servicios</b>
+                                <ul>
+                                    <li><?php
+                                if($_SESSION['sess']['level'] == 1){ echo anchor("consumo_gas/servicio_registrar/", "Registrar nuevo servicio"); }
+                                ?>
+                                    </li>
+                                    <li><?php echo anchor("consumo_gas/servicio_catalogo/", "Catálogo de servicios"); ?>
+                                    </li>
+                                </ul>
+                        </li>
+                    </ul>
+                    <ul class="plan">
+                        <li>
+                            <b>Gráficas</b>
+                                <ul>
+                                    <li><?php echo anchor("consumo_gas/diagnostico/", "Gráfica de Gas"); ?>
+                                    <li><?php echo anchor("control_factor_gei/metrica_gei_gas/", "GEI Gas"); ?></li>
+                                    </li>
+                                    <li><?php echo anchor("control_factor_gei/m3cperiodo_gas/", "m3 Per Cápita x Año"); ?></li>
+                                    <li><?php echo anchor("control_factor_gei/gaskgcperiodo_gas/", "kg Per Cápita x Año"); ?></li>
+                                </ul>
+                        </li>
+                    <ul class="plan">
+                    <li>
+                            <b>Factor GEI</b>
+                                <ul>
+                                     <li><?php
+                                if($_SESSION['sess']['level'] == 1){ echo anchor("control_factor_gei/factor_gei/", "Capturar Datos"); }
+                                ?>
+                                     </li>
+                                </ul>
+                    </li>
+                    </ul>
+                        <li>
+                            <b>Métricas</b>
+                                <ul>
+                                    <li><?php echo anchor("consumo_gas/metricas_buscar_year_gas/", "Total por Años"); ?>
+
+                                    </li>
+                                </ul>
+                        </li>
+                    </ul>
+                </div><!--/.col-sm-4-->
+            </div>
+        </div>
+    </div>
+</section><!--/#pricing-->
+
+
+<section id="contact">
+    <!--div class="container"-->
+        <div class="box last">
+            <div class="row">
+            <div class="center">
+                 <h2>Directorio</h2><br>
+
+                    <div class="col-sm-6">
+
+                        <h4><b>Ing. Rogelio Garzweqeqweqwa Rivera</b></h4>
+                        <h4>Rector</h4><br>
+
+                        <h4><b>Dr. Santos Guzmán López</b></h4>
+                        <h4>Secretario Académico</h4><br>
+
+                        <h4><b>Ing. Alberto Zambrano Elizondo</b></h4>
+                        <h4>Director de Tecnologías de Información</h4><br>
+
+                        <h4><b>Ing. Arturo Cárdenas Garza</b></h4>
+                        <h4>Coordinador del Panel de Control</h4><br>
+
+                    </div><!--/.col-sm-6-->
+                    <div class="col-sm-6">
+
+                        <h4><b>MA Carmen del Rosario de la Fuente García</b></h4>
+                        <h4>Secretaria General</h4><br>
+
+                        <h4><b>Dr. Sergio Fernández Delgadillo</b></h4>
+                        <h4>Secretaría de Sustentabilidad</h4><br>
+
+                        <h4><b>MC Félix González Estrada</b></h4>
+                        <h4>Director de Infraestructura para la Sustentabilidad</h4><br>
+                    </div><!--/.col-sm-6-->
+            </div><!--/.row-->
+            </div><!--/.box-->
+        </div><!--/.container-->
+    </div>
+</section><!--/#contact
